@@ -1,0 +1,28 @@
+name,class
+Penicillin G,PEN
+Penicillin V,PEN
+Oxacillin,PEN
+Amoxicillin,PEN
+Ampicillin,PEN
+Piperacillin,PEN
+Cefadroxil,1G
+Cephalexin,1G
+Cefazolin,1G
+Cefaclor,2G
+Cefoxitin,2G
+Cefprozil,2G
+Cefuroxime,2G
+Cefdinir,3G
+Ceftibuten,3G
+Cefpodoxime,3G
+Ceftazidime,3G
+Cefotaxime,3G
+Ceftriaxone,3G
+Cefixime,3G
+Cefditoren,3G
+Cefepime,4G
+Ceftaroline,5G
+Ceftolozane,5Gpip 
+Ertapenem,CARB
+Meropenem,CARB
+Aztreonam,MONO
