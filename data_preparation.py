@@ -11,6 +11,8 @@ from torch_geometric.data import Data
 from sklearn.model_selection import train_test_split
 import warnings
 warnings.filterwarnings('ignore')
+import os
+import pickle
 
 
 # Drug list from Northwestern Medicine chart
@@ -175,7 +177,7 @@ def create_drug_embeddings(smiles_dict):
     return drug_graphs
 
 
-def create_dataset(labels_df, drug_graphs):
+def create_dataset(labels_df, drug_graphs, structural_features=None):
     """
     Create training dataset from drug pairs.
 
@@ -192,11 +194,24 @@ def create_dataset(labels_df, drug_graphs):
         drug1, drug2, label = row['drug1'], row['drug2'], row['label']
 
         if drug1 in drug_graphs and drug2 in drug_graphs:
-            dataset.append((
-                drug_graphs[drug1],
-                drug_graphs[drug2],
-                torch.tensor([label], dtype=torch.long)
-            ))
+            if structural_features is not None and (drug1, drug2) in structural_features:
+                feats = structural_features[(drug1, drug2)]
+                # Convert numpy array to torch tensor if needed
+                if not isinstance(feats, torch.Tensor):
+                    feats = torch.tensor(feats, dtype=torch.float)
+
+                dataset.append((
+                    drug_graphs[drug1],
+                    drug_graphs[drug2],
+                    torch.tensor([label], dtype=torch.long),
+                    feats
+                ))
+            else:
+                dataset.append((
+                    drug_graphs[drug1],
+                    drug_graphs[drug2],
+                    torch.tensor([label], dtype=torch.long)
+                ))
 
     return dataset
 
@@ -290,7 +305,16 @@ def main():
 
         # Step 4: Create dataset
         print("\n[Step 4] Creating dataset...")
-        dataset = create_dataset(labels_df, drug_graphs)
+
+        # Try to load precomputed structural features (optional)
+        structural_features = None
+        sf_path = 'data/structural_features.pkl'
+        if os.path.exists(sf_path):
+            with open(sf_path, 'rb') as f:
+                structural_features = pickle.load(f)
+            print(f"✓ Loaded structural features from {sf_path} ({len(structural_features)//2} unique pairs approx)")
+
+        dataset = create_dataset(labels_df, drug_graphs, structural_features)
 
         # Step 5: Split data
         print("\n[Step 5] Splitting data...")
@@ -305,13 +329,19 @@ def main():
         print(f"\nClass weights: {class_weights}")
 
         # Save processed data
-        torch.save({
+        save_dict = {
             'train': train_set,
             'val': val_set,
             'test': test_set,
             'class_weights': class_weights,
             'drug_graphs': drug_graphs
-        }, 'data/processed_data.pt')
+        }
+
+        # Also save structural features if available so downstream code can access them
+        if structural_features is not None:
+            save_dict['structural_features'] = structural_features
+
+        torch.save(save_dict, 'data/processed_data.pt')
 
         print("\n✓ Data saved to data/processed_data.pt")
     else:

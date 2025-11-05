@@ -54,14 +54,17 @@ def load_model_and_data():
     # Load data
     data = torch.load('data/processed_data.pt', map_location='cpu', weights_only=False)
     drug_graphs = data['drug_graphs']
+    structural_features = data.get('structural_features', None)
 
     print(f"✓ Model loaded ({sum(p.numel() for p in model.parameters()):,} parameters)")
     print(f"✓ Data loaded ({len(drug_graphs)} drugs)")
+    if structural_features is not None:
+        print(f"✓ Structural features loaded ({len(structural_features)//2} unique pairs approx)")
 
-    return model, drug_graphs
+    return model, drug_graphs, structural_features
 
 
-def predict_all_pairs(model, drug_graphs, drug_list):
+def predict_all_pairs(model, drug_graphs, drug_list, structural_features=None):
     """
     Predict cross-reactivity for all drug pairs.
 
@@ -90,8 +93,14 @@ def predict_all_pairs(model, drug_graphs, drug_list):
                 graph1.batch = torch.zeros(graph1.num_nodes, dtype=torch.long)
                 graph2.batch = torch.zeros(graph2.num_nodes, dtype=torch.long)
 
+                # Prepare structural features for this pair (if available)
+                struct_feats = None
+                if structural_features is not None:
+                    # mapping uses (drug1, drug2) keys
+                    struct_feats = structural_features.get((drug1, drug2), None)
+
                 # Predict
-                logits = model(graph1, graph2)
+                logits = model(graph1, graph2, struct_feats)
                 pred_class = torch.argmax(logits, dim=-1).item()
 
                 # Fill symmetric matrix
@@ -318,11 +327,11 @@ def main():
     print("EVALUATING MODEL VS NORTHWESTERN MEDICINE CLINICAL CHART")
     print("=" * 70)
 
-    # Load model and data
-    model, drug_graphs = load_model_and_data()
+    # Load model and data (includes optional structural features)
+    model, drug_graphs, structural_features = load_model_and_data()
 
-    # Predict all pairs
-    predictions = predict_all_pairs(model, drug_graphs, DRUGS_IN_ORDER)
+    # Predict all pairs (pass structural features if available)
+    predictions = predict_all_pairs(model, drug_graphs, DRUGS_IN_ORDER, structural_features)
 
     # Load clinical labels
     clinical_matrix = load_clinical_labels()

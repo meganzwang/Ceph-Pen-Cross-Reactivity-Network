@@ -134,7 +134,8 @@ class CrossReactivityPredictor(nn.Module):
         embedding_dim=256,
         hidden_dim=512,
         num_classes=3,
-        dropout=0.3
+        dropout=0.3,
+        struct_feat_dim=0
     ):
         super().__init__()
 
@@ -142,7 +143,9 @@ class CrossReactivityPredictor(nn.Module):
         self.embedding_dim = embedding_dim
 
         # Combined feature dimension: [h1 || h2 || |h1-h2| || h1*h2]
-        combined_dim = embedding_dim * 4
+        # Optionally include structural feature vector appended to combined embedding
+        self.struct_feat_dim = struct_feat_dim
+        combined_dim = embedding_dim * 4 + (struct_feat_dim or 0)
 
         # Prediction MLP
         self.predictor = nn.Sequential(
@@ -155,7 +158,7 @@ class CrossReactivityPredictor(nn.Module):
             nn.Linear(hidden_dim // 2, num_classes)
         )
 
-    def forward(self, drug1_graph, drug2_graph):
+    def forward(self, drug1_graph, drug2_graph, struct_feats=None):
         """
         Args:
             drug1_graph: torch_geometric.data.Data or Batch for drug 1
@@ -176,29 +179,43 @@ class CrossReactivityPredictor(nn.Module):
             h1 * h2                 # Element-wise product
         ], dim=-1)
 
+        # Optionally concatenate structural features
+        if struct_feats is not None:
+            # Ensure struct_feats is float tensor and right device
+            if not isinstance(struct_feats, torch.Tensor):
+                struct_feats = torch.tensor(struct_feats, dtype=torch.float, device=combined.device)
+            else:
+                struct_feats = struct_feats.to(combined.device)
+
+            # If struct_feats is 1D (single sample), unsqueeze
+            if struct_feats.dim() == 1:
+                struct_feats = struct_feats.unsqueeze(0)
+
+            combined = torch.cat([combined, struct_feats], dim=-1)
+
         # Predict cross-reactivity
         logits = self.predictor(combined)
 
         return logits
 
-    def predict_proba(self, drug1_graph, drug2_graph):
+    def predict_proba(self, drug1_graph, drug2_graph, struct_feats=None):
         """
         Predict class probabilities.
 
         Returns:
             Probabilities of shape [batch_size, num_classes]
         """
-        logits = self.forward(drug1_graph, drug2_graph)
+        logits = self.forward(drug1_graph, drug2_graph, struct_feats)
         return F.softmax(logits, dim=-1)
 
-    def predict(self, drug1_graph, drug2_graph):
+    def predict(self, drug1_graph, drug2_graph, struct_feats=None):
         """
         Predict class labels.
 
         Returns:
             Class labels of shape [batch_size]
         """
-        logits = self.forward(drug1_graph, drug2_graph)
+        logits = self.forward(drug1_graph, drug2_graph, struct_feats)
         return torch.argmax(logits, dim=-1)
 
 
@@ -228,7 +245,8 @@ def build_model(config):
         embedding_dim=config.get('embedding_dim', 256),
         hidden_dim=config.get('predictor_hidden_dim', 512),
         num_classes=config.get('num_classes', 3),
-        dropout=config.get('predictor_dropout', 0.3)
+        dropout=config.get('predictor_dropout', 0.3),
+        struct_feat_dim=config.get('struct_feat_dim', 0)
     )
 
     return model

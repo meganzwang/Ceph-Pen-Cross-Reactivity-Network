@@ -27,7 +27,8 @@ class PairDataset(torch.utils.data.Dataset):
     def __init__(self, data):
         """
         Args:
-            data: List of (graph1, graph2, label) tuples
+            data: List of (graph1, graph2, label) tuples or
+                  (graph1, graph2, label, struct_feats) tuples if structural features included
         """
         self.data = data
 
@@ -42,13 +43,16 @@ def collate_fn(batch):
     """
     Custom collate function for batching drug pairs.
 
-    Args:
-        batch: List of (graph1, graph2, label) tuples
-
-    Returns:
-        (batch_graph1, batch_graph2, batch_labels)
+    Returns a 4-tuple: (batch_graph1, batch_graph2, batch_labels, batch_struct_feats)
+    batch_struct_feats is None if not provided in the dataset.
     """
-    graphs1, graphs2, labels = zip(*batch)
+    sample = batch[0]
+
+    if len(sample) == 3:
+        graphs1, graphs2, labels = zip(*batch)
+        feats = None
+    else:
+        graphs1, graphs2, labels, feats = zip(*batch)
 
     # Batch graphs
     batch_graph1 = Batch.from_data_list(graphs1)
@@ -57,7 +61,21 @@ def collate_fn(batch):
     # Stack labels
     batch_labels = torch.cat(labels, dim=0)
 
-    return batch_graph1, batch_graph2, batch_labels
+    # Process structural features if present
+    if feats is None:
+        batch_struct_feats = None
+    else:
+        # Ensure all feats are tensors
+        proc = []
+        for f in feats:
+            if isinstance(f, torch.Tensor):
+                proc.append(f)
+            else:
+                proc.append(torch.tensor(f, dtype=torch.float))
+
+        batch_struct_feats = torch.stack(proc, dim=0)
+
+    return batch_graph1, batch_graph2, batch_labels, batch_struct_feats
 
 
 def train_epoch(model, dataloader, optimizer, criterion, device):
@@ -72,16 +90,18 @@ def train_epoch(model, dataloader, optimizer, criterion, device):
     num_batches = 0
 
     for batch in tqdm(dataloader, desc="Training", leave=False):
-        graph1, graph2, labels = batch
+        graph1, graph2, labels, struct_feats = batch
 
         # Move to device
         graph1 = graph1.to(device)
         graph2 = graph2.to(device)
         labels = labels.to(device)
+        if struct_feats is not None:
+            struct_feats = struct_feats.to(device)
 
         # Forward pass
         optimizer.zero_grad()
-        logits = model(graph1, graph2)
+        logits = model(graph1, graph2, struct_feats)
         loss = criterion(logits, labels)
 
         # Backward pass
@@ -111,15 +131,17 @@ def evaluate(model, dataloader, criterion, device):
     all_probs = []
 
     for batch in tqdm(dataloader, desc="Evaluating", leave=False):
-        graph1, graph2, labels = batch
+        graph1, graph2, labels, struct_feats = batch
 
         # Move to device
         graph1 = graph1.to(device)
         graph2 = graph2.to(device)
         labels = labels.to(device)
+        if struct_feats is not None:
+            struct_feats = struct_feats.to(device)
 
         # Forward pass
-        logits = model(graph1, graph2)
+        logits = model(graph1, graph2, struct_feats)
         loss = criterion(logits, labels)
 
         # Get predictions
@@ -229,6 +251,17 @@ def train(config):
     )
 
     # Build model
+    # Detect structural feature dimension from data (if present) and set in config
+    struct_feat_dim = 0
+    if len(train_set) > 0 and len(train_set[0]) == 4:
+        sample_feat = train_set[0][3]
+        try:
+            struct_feat_dim = sample_feat.shape[-1]
+        except Exception:
+            struct_feat_dim = 0
+
+    config['struct_feat_dim'] = struct_feat_dim
+
     print("\nBuilding model...")
     model = build_model(config)
     model = model.to(device)
