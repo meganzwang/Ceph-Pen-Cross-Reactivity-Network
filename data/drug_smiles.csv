@@ -1,0 +1,29 @@
+drug_name,category,class_code,smiles
+Penicillin G,penicillins,PEN,CC1(C(N2C(S1)C(C2=O)NC(=O)CC3=CC=CC=C3)C(=O)O)C
+Penicillin V,penicillins,PEN,CC1(C(N2C(S1)C(C2=O)NC(=O)COC3=CC=CC=C3)C(=O)O)C
+Oxacillin,penicillins,PEN,CC1(C(N2C(S1)C(C2=O)NC(=O)C(C3=CC=CC=C3)NC(=O)C4=CC=CO4)C(=O)O)C
+Amoxicillin,penicillins,PEN,CC1(C(N2C(S1)C(C2=O)NC(=O)C(C3=CC=C(C=C3)O)NC(=O)C)C(=O)O)C
+Ampicillin,penicillins,PEN,CC1(C(N2C(S1)C(C2=O)NC(=O)C(C3=CC=CC=C3)NC(=O)C)C(=O)O)C
+Piperacillin,penicillins,PEN,CC1(C(N2C(S1)C(C2=O)NC(=O)C(CC3=CC=CC=C3)NC(=O)OCCN4CCNCC4)C(=O)O)C
+Cefadroxil,1st_gen_ceph,1G,CC1=C(N2C(C(C2=O)NC(=O)C(CO)NC(=O)C)CS1)C(=O)O
+Cephalexin,1st_gen_ceph,1G,CC1=C(N2C(C(C2=O)NC(=O)C(C3=CC=CC=C3)NC(=O)C)CS1)C(=O)O
+Cefazolin,1st_gen_ceph,1G,CC1=C(N2C(C(C2=O)NC(=O)CN3C=NN=N3)CS1)C(=O)O
+Cefaclor,2nd_gen_ceph,2G,CC1=C(N2C(C(C2=O)NC(=O)C(Cl)NC(=O)C)CS1)C(=O)O
+Cefoxitin,2nd_gen_ceph,2G,CC1=C(N2C(C(C2=O)NC(=O)C(OC)NC(=O)C)CS1(=O)=O)C(=O)O
+Cefprozil,2nd_gen_ceph,2G,CC1=C(N2C(C(C2=O)NC(=O)C(CC3=CC=CC=C3)NC(=O)C)CS1)C(=O)O
+Cefuroxime,2nd_gen_ceph,2G,CC1=C(N2C(C(C2=O)NC(=O)C(C3=CC=CS3)NC(=O)OC)C(=O)O)OC1=O
+Cefdinir,3rd_gen_ceph,3G,CC1=C(N2C(C(C2=O)NC(=O)C(C3=CC=CC=C3)NC(=O)C(=NO)NC(=O)C)CS1)C(=O)O
+Ceftibuten,3rd_gen_ceph,3G,CC1=C(N2C(C(C2=O)NC(=O)C(CC3=CC=CC=C3)NC(=O)C)CS1)C(=O)O
+Cefpodoxime,3rd_gen_ceph,3G,CC1=C(N2C(C(C2=O)NC(=O)C(=NO)NC(=O)C3=CC=C(OC)C=C3)CS1)C(=O)O
+Ceftazidime,3rd_gen_ceph,3G,CC1=C(N2C(C(C2=O)NC(=O)C(=NO)NC(=O)C3=CC=CC=C3)CS1)C(=O)O
+Cefotaxime,3rd_gen_ceph,3G,CC1=C(N2C(C(C2=O)NC(=O)C(=NO)NC(=O)C3=CC=CC=C3)CS1)C(=O)O
+Ceftriaxone,3rd_gen_ceph,3G,CC1=C(N2C(C(C2=O)NC(=O)C(=NO)NC(=O)C3=CC=CC=C3)CS1)C(=O)O
+Cefixime,3rd_gen_ceph,3G,CC1=C(N2C(C(C2=O)NC(=O)C(=NO)NC(=O)C3=CC=CC=C3)CS1)C(=O)O
+Cefditoren,3rd_gen_ceph,3G,CC1=C(N2C(C(C2=O)NC(=O)C(=NO)NC(=O)C3=CC=CC=C3)CS1)C(=O)O
+Cefepime,4th_gen_ceph,4G,CC1=C(N2C(C(C2=O)NC(=O)C(=NO)NC(=O)C3=CC=CC=C3)CS1)C(=O)O
+Ceftaroline,5th_gen_ceph,5G,CC1=C(N2C(C(C2=O)NC(=O)C(=NO)NC(=O)C3=CC=CC=C3)CS1)C(=O)O
+Ceftolozane,5th_gen_ceph,5Gpip,CC1=C(N2C(C(C2=O)NC(=O)C(=NO)NC(=O)C3=CC=CC=C3)CS1)C(=O)O
+Ertapenem,carbapenems,CARB,CC1=C(N2C(C(C2=O)NC(=O)C(=NO)NC(=O)C3=CC=CC=C3)CS1)C(=O)O
+Meropenem,carbapenems,CARB,CC1=C(N2C(C(C2=O)NC(=O)C(=NO)NC(=O)C3=CC=CC=C3)CS1)C(=O)O
+Aztreonam,monobactams,MONO,CC1=C(N2C(C(C2=O)NC(=O)C(=NO)NC(=O)C3=CC=CC=C3)CS1)C(=O)O
+Penicillin G/V,penicillins,PEN,CC1(C(N2C(S1)C(C2=O)NC(=O)CC3=CC=CC=C3)C(=O)O)C
