@@ -52,25 +52,23 @@
   - 3 carbapenems (Ertapenem, Meropenem, Imipenem)
   - 2 monobactams (Aztreonam)
 
-**Training Data:**
-- **327 labeled pairs** used for training (subset of full chart)
-  - Training: 229 pairs (70%)
-  - Validation: 49 pairs (15%)
-  - Test: 49 pairs (15%)
-- Stratified split maintains class distribution (~82% SUGGEST, 12% CAUTION, 6% AVOID)
-
-**Full Dataset (Clinical Validation):**
+**Dataset:**
 - **650 total drug pairs** from Northwestern Medicine chart (26×26 matrix, excluding self-pairs)
 - Available in `data/cross_reactivity_labels.csv` (generated from `ReferenceTableLabels.xlsx`)
   - 536 SUGGEST (82.5%) - Low cross-reactivity risk
   - 76 CAUTION (11.7%) - Moderate risk
   - 38 AVOID (5.8%) - High risk
 
+**Training Splits:**
+- Stratified 70/15/15 split maintains class distribution in each set:
+  - **Training:** 455 pairs (70%)
+  - **Validation:** 98 pairs (15%)
+  - **Test:** 98 pairs (15%)
+- All splits have ~82% SUGGEST, 12% CAUTION, 6% AVOID
+
 **Data sources:**
   - SMILES molecular structures: PubChem (https://pubchem.ncbi.nlm.nih.gov/)
   - Cross-reactivity labels: Northwestern Medicine clinical reference chart
-
-**Note:** The model was trained on 327 pairs, then evaluated on both the held-out test set (49 pairs) and the full 650-pair matrix for clinical validation.
 
 ### Network Inputs
 
@@ -132,11 +130,61 @@
 
 **Data Splitting:**
 - **Stratified 70/15/15 split** (maintains class distribution in each set):
-  - Training: 210 pairs (70%)
-  - Validation: 45 pairs (15%)
-  - Test: 45 pairs (15%)
+  - Training: 455 pairs (70%)
+  - Validation: 98 pairs (15%)
+  - Test: 98 pairs (15%)
 - **Stratification ensures** each split has ~82/12/6 class distribution
 - **No data leakage:** Same drug pair never appears in multiple splits
+
+---
+
+### GNN Task Specification
+
+**Task Type:** **Link prediction** (pairwise drug cross-reactivity classification)
+
+**Observations/Instances:**
+- Each observation is a **drug pair** (Drug A, Drug B)
+- 650 total instances from 26×26 drug interaction matrix (excluding self-pairs)
+- Unit of analysis: Binary relationship between two drugs
+
+**Independent Variables:**
+
+1. **Molecular structure (GNN input):**
+   - Two molecular graphs, one per drug
+   - Graph tensors for each molecule:
+     - **Edge list representation:** `edge_index` tensor of shape `[2, num_edges]`
+       - Example: `[[0,1,1,2,...], [1,0,2,1,...]]` for bonds between atoms
+     - **Node feature matrix:** `x` tensor of shape `[num_nodes, 6]`
+       - 6-dimensional continuous features per atom
+       - Encoding: Atomic number (continuous), degree (continuous), formal charge (continuous), hybridization (ordinal: 0=sp, 1=sp², 2=sp³, 3=sp³d, 4=sp³d²), aromaticity (binary: 0/1), hydrogens (continuous)
+     - **Edge feature matrix:** `edge_attr` tensor of shape `[num_edges, 2]`
+       - 2-dimensional continuous features per bond
+       - Encoding: Bond type (continuous: 1.0=single, 2.0=double, 3.0=triple, 1.5=aromatic), is_in_ring (binary: 0/1)
+
+2. **Structural features (MLP input):**
+   - 10-dimensional feature vector per drug pair
+   - Encoding: 6 binary class features (same_class, both_pen, both_ceph, pen_ceph_pair, both_carb) + 1 normalized generation distance + 3 normalized molecular property differences (MW, LogP, aromatic rings)
+
+**Dependent Variable (Labels):**
+- **3-class classification** of cross-reactivity risk
+- Encoding: 0 = SUGGEST (low risk), 1 = CAUTION (moderate risk), 2 = AVOID (high risk)
+- Label type: Categorical (ordinal with clinical significance)
+
+**Negative Sampling:**
+- **Not applicable** - this is a fully supervised link prediction task
+- All 650 drug pairs have ground-truth labels from Northwestern Medicine clinical chart
+- No negative sampling needed because:
+  - We have explicit labels for all pairs (not just positive examples)
+  - Task is to classify existing relationships, not discover new links
+  - Clinical chart provides complete pairwise annotations
+
+**Class Balance:**
+- **Severe imbalance:** 82.5% SUGGEST, 11.7% CAUTION, 5.8% AVOID
+- **Mitigation strategy:** Weighted cross-entropy loss
+  - Class weights computed as inverse frequency: `weights = 1.0 / counts / (1.0 / counts).sum() * num_classes`
+  - Weights: [0.147, 0.927, 1.926] for [SUGGEST, CAUTION, AVOID]
+  - Effect: AVOID loss weighted 13× higher than SUGGEST to compensate for imbalance
+- **Stratified splitting:** Ensures each split (train/val/test) maintains the 82/12/6 distribution
 
 ---
 
