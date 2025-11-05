@@ -358,7 +358,7 @@ def train(config):
     # Load best model and evaluate on test set
     print("\n" + "=" * 50)
     print("Evaluating best model on test set...")
-    checkpoint = torch.load(config['checkpoint_path'])
+    checkpoint = torch.load(config['checkpoint_path'], weights_only=False)
     model.load_state_dict(checkpoint['model_state_dict'])
 
     test_metrics, test_preds, test_probs = evaluate(model, test_loader, criterion, device)
