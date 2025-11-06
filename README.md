@@ -291,25 +291,6 @@ where:
 
 ## Experimental Design
 
-### Data Splitting Strategy
-
-**Stratified 70/15/15 split:**
-- **Training set:** 210 pairs (70%)
-  - Used for learning model parameters
-  - Model sees these examples during backpropagation
-- **Validation set:** 45 pairs (15%)
-  - Used for hyperparameter tuning and early stopping
-  - Model never trained on these, but they guide training decisions
-- **Test set:** 45 pairs (15%)
-  - **Final evaluation only** - completely held out
-  - Never used during training or model selection
-  - Represents real-world performance on unseen drug pairs
-
-**Why stratified?**
-- Ensures each split maintains the 82/12/6 class distribution
-- Prevents validation/test sets from having zero examples of AVOID class
-- Critical for meaningful evaluation with imbalanced data
-
 ### Training Procedure
 
 **Hyperparameters:**
