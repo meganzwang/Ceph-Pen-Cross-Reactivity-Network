@@ -25,3 +25,22 @@ Ertapenem,carbapenems,CARB,CC1=C(N2C(C(C2=O)NC(=O)C(=NO)NC(=O)C3=CC=CC=C3)CS1)C(
 Meropenem,carbapenems,CARB,CC1=C(N2C(C(C2=O)NC(=O)C(=NO)NC(=O)C3=CC=CC=C3)CS1)C(=O)O
 Aztreonam,monobactams,MONO,CC1=C(N2C(C(C2=O)NC(=O)C(=NO)NC(=O)C3=CC=CC=C3)CS1)C(=O)O
 Penicillin G/V,penicillins,PEN,CC1(C(N2C(S1)C(C2=O)NC(=O)CC3=CC=CC=C3)C(=O)O)C
+Amikacin,aminoglycosides,AMG,CC(CO)NC1C(C(C(C(O1)CO)NC(CO)C(CO)NC(CO)C(CO)N)O)O
+Gentamicin,aminoglycosides,AMG,CC1C(C(C(O1)NC(CO)C(CO)NC(CN)C(CO)N)O)NC(CO)C(CO)N
+Streptomycin,aminoglycosides,AMG,COC1C(C(C(O1)NC(CO)C(CO)N)O)OC2C(C(C(C(O2)N)O)O)N
+Tobramycin,aminoglycosides,AMG,CC(CO)NC1C(C(C(C(O1)CO)NC(CO)C(CO)N)O)O
+Azithromycin,macrolides,MAC,CC1CCC2(C(C1O)OC(=O)C(CC(C2OC)O)(O)C3=CC=CC=C3)OC
+Clarithromycin,macrolides,MAC,CC1CCC2(C(C1O)OC(=O)C(CC(C2OC)O)(O)C3=CC=CC=C3)OC
+Erythromycin,macrolides,MAC,CC1CC2C(CC(C(C2OC1OC3C(CC(C(C3O)O)O)N(C)C)(C)O)OC)OC
+Clindamycin,lincosamides,LIN,CC1CC(C(C2=CC=CC=C2Cl)N(C1C(=O)N)C)O
+Ciprofloxacin,fluoroquinolones,FLQ,CC1=NC2=C(C(=O)C(=CN2C3CC3)F)C=C1
+Levofloxacin,fluoroquinolones,FLQ,CC1=NC2=C(C(=O)C(=CN2C3CCC3)O)C=C1
+Moxifloxacin,fluoroquinolones,FLQ,CC1=NC2=C(C(=O)C(=CN2C3CCC3)OCCF)C=C1
+Vancomycin,glycopeptides,GLY,CC1=C(C(=O)NC2=CC=C(C=C2)O)C3=C(C1=O)NC4=CC=C(C=C4)O
+Cotrimoxazole (Sulfa),sulfonamides,SUL,CC1=CC(=C(C=C1)N)S(=O)(=O)NC2=NC=NC=N2
+Chloramphenicol,other_nonbeta,OAB,COC1=CC=C(C=C1)C(CO)NC(=O)C(Cl)Cl
+Daptomycin,other_nonbeta,OAB,CC(C)C(C(=O)NCC(C(=O)O)NC(=O)C(C)NC(=O)C1CC1)O
+Metronidazole,other_nonbeta,OAB,COC1=NC=NC(=O)N1CCO
+Tigecycline,other_nonbeta,OAB,CC1C2C3C(C(C(=O)C3=O)O)C(=O)N(C2)C(C1)C(=O)NC4CCC(CC4)N
+Cloxacillin,penicillins,PEN,CC1(C(N2C(S1)C(C2=O)NC(=O)C(C3=CC=C(Cl)C=C3)OC(=O)C)C(=O)O)C
+
