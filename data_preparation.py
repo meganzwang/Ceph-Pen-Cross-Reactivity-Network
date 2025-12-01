@@ -15,27 +15,9 @@ import os
 import pickle
 
 
-# Drug list from Northwestern Medicine chart
-DRUGS = {
-    'penicillins': [
-        'Penicillin G/V', 'Oxacillin', 'Amoxicillin', 'Ampicillin', 'Piperacillin'
-    ],
-    '1st_gen_ceph': ['Cefadroxil', 'Cephalexin', 'Cefazolin'],
-    '2nd_gen_ceph': ['Cefaclor', 'Cefoxitin', 'Cefprozil', 'Cefuroxime'],
-    '3rd_gen_ceph': [
-        'Cefdinir', 'Cefditoren', 'Cefixime', 'Cefotaxime',
-        'Cefpodoxime', 'Ceftazidime', 'Ceftibuten', 'Ceftriaxone'
-    ],
-    '4th_gen_ceph': ['Cefepime'],
-    '5th_gen_ceph': ['Ceftaroline', 'Ceftolozane'],
-    'carbapenems': ['Ertapenem', 'Meropenem'],
-    'monobactams': ['Aztreonam']
-}
 
-# Flatten drug list
-ALL_DRUGS = []
-for category, drugs in DRUGS.items():
-    ALL_DRUGS.extend(drugs)
+
+
 
 
 def load_smiles_from_csv(csv_path='data/drug_smiles.csv'):
@@ -150,6 +132,17 @@ def extract_labels_from_chart(csv_path='data/cross_reactivity_labels.csv'):
         return pd.DataFrame(columns=['drug1', 'drug2', 'label'])
 
     df = pd.read_csv(csv_path)
+
+    # Clean up labels: strip whitespace and convert to int
+    df['label'] = df['label'].astype(str).str.strip()
+
+    # Remove rows with empty labels
+    df = df[df['label'] != '']
+    df = df[df['label'] != 'nan']
+
+    # Convert to int
+    df['label'] = df['label'].astype(int)
+
     print(f"✓ Loaded {len(df)} labeled pairs from {csv_path}")
     return df
 
