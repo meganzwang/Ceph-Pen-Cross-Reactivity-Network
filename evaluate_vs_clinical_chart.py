@@ -220,8 +220,9 @@ def plot_side_by_side_heatmaps(clinical_matrix, predictions, save_path='plots/cl
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(22, 10))
 
-    # Color map: SUGGEST (green), CAUTION (yellow), AVOID (red), N/A (gray)
-    cmap = plt.cm.colors.ListedColormap(['lightgreen', 'yellow', 'red', 'lightgray'])
+    # Color map: N/A (gray), SUGGEST (green), CAUTION (yellow), AVOID (red)
+    # Values: -1=N/A, 0=SUGGEST, 1=CAUTION, 2=AVOID
+    cmap = plt.cm.colors.ListedColormap(['lightgray', 'lightgreen', 'yellow', 'red'])
     bounds = [-1.5, -0.5, 0.5, 1.5, 2.5]
     norm = plt.cm.colors.BoundaryNorm(bounds, cmap.N)
 

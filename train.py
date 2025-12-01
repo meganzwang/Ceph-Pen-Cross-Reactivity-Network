@@ -16,6 +16,9 @@ from tqdm import tqdm
 import json
 import os
 
+# Import precision-focused loss functions
+from precision_loss import create_precision_focused_criterion, BalancedPrecisionLoss, PrecisionPenaltyLoss
+
 from model import build_model
 
 
@@ -269,8 +272,11 @@ def train(config):
     total_params = sum(p.numel() for p in model.parameters())
     print(f"Total parameters: {total_params:,}")
 
-    # Loss function with class weights
-    criterion = nn.CrossEntropyLoss(weight=class_weights)
+    # Precision-focused loss to reduce over-conservative predictions
+    criterion = PrecisionPenaltyLoss(
+        class_weights=class_weights,
+        false_positive_penalty=3.0  # Strong penalty for false positives
+    )
 
     # Optimizer
     optimizer = optim.Adam(
