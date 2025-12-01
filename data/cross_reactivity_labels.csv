@@ -1,13 +1,13 @@
 drug1,drug2,label
 Penicillin G/V,Oxacillin,0
-Penicillin G/V,Amoxicillin,0
-Penicillin G/V,Ampicillin,0
-Penicillin G/V,Piperacillin,0
+Penicillin G/V,Amoxicillin,2
+Penicillin G/V,Ampicillin,2
+Penicillin G/V,Piperacillin,2
 Penicillin G/V,Cefadroxil,1
 Penicillin G/V,Cephalexin,1
 Penicillin G/V,Cefazolin,0
 Penicillin G/V,Cefaclor,1
-Penicillin G/V,Cefoxitin,0
+Penicillin G/V,Cefoxitin,1
 Penicillin G/V,Cefprozil,1
 Penicillin G/V,Cefuroxime,0
 Penicillin G/V,Cefdinir,0
@@ -83,10 +83,10 @@ Oxacillin,Daptomycin,0
 Oxacillin,Metronidazole,0
 Oxacillin,Tigecycline,0
 Oxacillin,Cloxacillin,0
-Amoxicillin,Ampicillin,0
-Amoxicillin,Piperacillin,0
+Amoxicillin,Ampicillin,2
+Amoxicillin,Piperacillin,2
 Amoxicillin,Cefadroxil,2
-Amoxicillin,Cephalexin,1
+Amoxicillin,Cephalexin,2
 Amoxicillin,Cefazolin,0
 Amoxicillin,Cefaclor,1
 Amoxicillin,Cefoxitin,0
@@ -123,13 +123,13 @@ Amoxicillin,Daptomycin,0
 Amoxicillin,Metronidazole,0
 Amoxicillin,Tigecycline,0
 Amoxicillin,Cloxacillin,2
-Ampicillin,Piperacillin,1
-Ampicillin,Cefadroxil,1
+Ampicillin,Piperacillin,2
+Ampicillin,Cefadroxil,2
 Ampicillin,Cephalexin,2
 Ampicillin,Cefazolin,0
 Ampicillin,Cefaclor,2
 Ampicillin,Cefoxitin,0
-Ampicillin,Cefprozil,1
+Ampicillin,Cefprozil,2
 Ampicillin,Cefuroxime,0
 Ampicillin,Cefdinir,0
 Ampicillin,Cefditoren,0
@@ -200,7 +200,7 @@ Piperacillin,Daptomycin,0
 Piperacillin,Metronidazole,0
 Piperacillin,Tigecycline,0
 Piperacillin,Cloxacillin,2
-Cefadroxil,Cephalexin,1
+Cefadroxil,Cephalexin,2
 Cefadroxil,Cefazolin,0
 Cefadroxil,Cefaclor,1
 Cefadroxil,Cefoxitin,0
