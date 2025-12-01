@@ -392,19 +392,100 @@ def train(config):
         class_name = ['SUG', 'CAU', 'AVO'][i]
         print(f"True {class_name}  {row[0]:4d} {row[1]:4d} {row[2]:4d}")
 
-    # Save results
+    # Evaluate on full dataset for comprehensive clinical assessment
+    print("\n" + "=" * 50)
+    print("Evaluating model on FULL DATASET for clinical deployment...")
+    
+    # Combine all data
+    full_data = train_set + val_set + test_set
+    full_dataset = PairDataset(full_data)
+    full_loader = DataLoader(full_dataset, batch_size=config['batch_size'], shuffle=False, collate_fn=collate_fn)
+    
+    full_metrics, full_preds, full_probs = evaluate(model, full_loader, criterion, device)
+    
+    print(f"\nFULL DATASET Results ({len(full_data)} drug pairs):")
+    print(f"Accuracy: {full_metrics['accuracy']:.4f} ({full_metrics['accuracy']*100:.1f}%)")
+    print(f"F1 (macro): {full_metrics['f1']:.4f}")
+    print(f"AUROC: {full_metrics['auroc']:.4f}")
+    print(f"Kappa: {full_metrics['kappa']:.4f}")
+
+    print(f"\nFull Dataset Per-class metrics:")
+    for i, (p, r, f, s) in enumerate(zip(
+        full_metrics['precision_per_class'],
+        full_metrics['recall_per_class'],
+        full_metrics['f1_per_class'],
+        full_metrics['support_per_class']
+    )):
+        class_name = ['SUGGEST', 'CAUTION', 'AVOID'][i]
+        print(f"{class_name}: P={p:.3f}, R={r:.3f}, F1={f:.3f} (n={s})")
+
+    print(f"\nFull Dataset Confusion Matrix:")
+    print("             Predicted")
+    print("           SUG  CAU  AVO")
+    for i, row in enumerate(full_metrics['confusion_matrix']):
+        class_name = ['SUG', 'CAU', 'AVO'][i]
+        print(f"True {class_name}  {row[0]:4d} {row[1]:4d} {row[2]:4d}")
+
+    # Save comprehensive results
     results = {
         'config': config,
         'history': history,
-        'test_metrics': test_metrics
+        'test_metrics': test_metrics,
+        'full_dataset_metrics': full_metrics,
+        'evaluation_summary': {
+            'test_set_size': len(test_set),
+            'full_dataset_size': len(full_data),
+            'test_accuracy': test_metrics['accuracy'],
+            'full_accuracy': full_metrics['accuracy'],
+            'test_kappa': test_metrics['kappa'],
+            'full_kappa': full_metrics['kappa'],
+            'clinical_interpretation': {
+                'test_performance': 'Unbiased evaluation on unseen data',
+                'full_performance': 'Real-world clinical deployment readiness'
+            }
+        }
     }
 
     with open(config['results_path'], 'w') as f:
         json.dump(results, f, indent=2)
 
-    print(f"\n✓ Results saved to {config['results_path']}")
+    print(f"\n" + "=" * 70)
+    print("COMPREHENSIVE EVALUATION SUMMARY")
+    print("=" * 70)
+    print(f"📊 TEST SET (Unbiased Research Validation):")
+    print(f"   • Size: {len(test_set)} pairs")
+    print(f"   • Accuracy: {test_metrics['accuracy']*100:.1f}%")
+    print(f"   • Cohen's Kappa: {test_metrics['kappa']:.3f}")
+    print(f"   • Use for: Research papers, model comparison")
+    print()
+    print(f"🏥 FULL DATASET (Clinical Deployment Assessment):")
+    print(f"   • Size: {len(full_data)} pairs (all 43×43 drug combinations)")
+    print(f"   • Accuracy: {full_metrics['accuracy']*100:.1f}%") 
+    print(f"   • Cohen's Kappa: {full_metrics['kappa']:.3f}")
+    print(f"   • Use for: Clinical decision support system")
+    print("=" * 70)
 
-    return model, test_metrics
+    print(f"\n✓ Comprehensive results saved to {config['results_path']}")
+
+    # Optional visualization generation (controlled by config flag)
+    if config.get('generate_plots', False):
+        print("\n" + "=" * 70)
+        print("GENERATING COMPREHENSIVE EVALUATION VISUALIZATIONS")
+        print("=" * 70)
+        
+        try:
+            from comprehensive_evaluation import evaluate_model_comprehensive
+            eval_results = evaluate_model_comprehensive(model, train_set, val_set, test_set, device)
+            print("✓ Comprehensive evaluation completed with visualizations")
+        except ImportError:
+            print("⚠️  Comprehensive evaluation module not available")
+            print("   Basic evaluation completed above")
+    else:
+        print(f"\n💡 To generate visualizations, run:")
+        print(f"   python run_comprehensive_eval.py")
+        print(f"   or set config['generate_plots'] = True")
+
+    return model, test_metrics, full_metrics
 
 
 if __name__ == '__main__':

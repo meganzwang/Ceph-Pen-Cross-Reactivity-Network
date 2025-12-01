@@ -228,7 +228,7 @@ def plot_side_by_side_heatmaps(clinical_matrix, predictions, save_path='plots/cl
 
     # Plot 1: Clinical Chart
     im1 = ax1.imshow(clinical_matrix, cmap=cmap, norm=norm, aspect='auto')
-    ax1.set_title('Northwestern Medicine Clinical Chart', fontsize=16, fontweight='bold')
+    ax1.set_title('Clinical Reference Baseline ', fontsize=16, fontweight='bold')
     ax1.set_xticks(np.arange(len(DRUGS_IN_ORDER)))
     ax1.set_yticks(np.arange(len(DRUGS_IN_ORDER)))
     ax1.set_xticklabels(DRUGS_IN_ORDER, rotation=90, ha='right', fontsize=8)
