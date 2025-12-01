@@ -36,7 +36,7 @@ Clindamycin,lincosamides,LIN,CC1CC(C(C2=CC=CC=C2Cl)N(C1C(=O)N)C)O
 Ciprofloxacin,fluoroquinolones,FLQ,CC1=NC2=C(C(=O)C(=CN2C3CC3)F)C=C1
 Levofloxacin,fluoroquinolones,FLQ,CC1=NC2=C(C(=O)C(=CN2C3CCC3)O)C=C1
 Moxifloxacin,fluoroquinolones,FLQ,CC1=NC2=C(C(=O)C(=CN2C3CCC3)OCCF)C=C1
-Cotrimoxazole (Sulfa),sulfonamides,SUL,CC1=CC(=C(C=C1)N)S(=O)(=O)NC2=NC=NC=N2
+Cotrimoxazole,sulfonamides,SUL,CC1=CC(=C(C=C1)N)S(=O)(=O)NC2=NC=NC=N2
 Chloramphenicol,other_nonbeta,OAB,COC1=CC=C(C=C1)C(CO)NC(=O)C(Cl)Cl
 Daptomycin,other_nonbeta,OAB,CC(C)C(C(=O)NCC(C(=O)O)NC(=O)C(C)NC(=O)C1CC1)O
 Metronidazole,other_nonbeta,OAB,COC1=NC=NC(=O)N1CCO

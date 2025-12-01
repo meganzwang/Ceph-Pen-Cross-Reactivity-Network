@@ -26,10 +26,10 @@ Penicillin G/V,Meropenem,0
 Penicillin G/V,Aztreonam,0
 Penicillin G/V, Amikacin, 0 
 Penicillin G/V, Gentamicin, 0
-Pencillin G/V, Streptomycin, 0
+Penicillin G/V, Streptomycin, 0
 Penicillin G/V, Tobramycin, 0
 Penicillin G/V, Azithromycin, 0
-Penicillin G/V, Clarithromycinin, 0
+Penicillin G/V, Clarithromycin, 0
 Penicillin G/V, Erythromycin, 0 
 Penicillin G/V, Clindamycin, 0
 Penicillin G/V, Ciprofloxacin, 
@@ -39,7 +39,7 @@ Penicillin G/V, Cotrimoxazole
 Penicillin G/V, Chloramphenicol
 Penicillin G/V, Daptomycin
 Penicillin G/V, Metronidazole
-Pencillin G/V, Tigeclycine
+Penicillin G/V, Tigecycline
 Penicillin G/V, Cloxacillin, 2
 Oxacillin,Penicillin G/V,0
 Oxacillin,Amoxicillin,0
@@ -81,7 +81,7 @@ Oxacillin, Cotrimoxazole, 0
 Oxacillin, Chloramphenicol, 0
 Oxacillin, Daptomycin, 0
 Oxacillin, Metronidazole, 0
-Oxacillin, Tigeclycine, 0
+Oxacillin, Tigecycline, 0
 Oxacillin, Cloxacillin, 0
 Amoxicillin,Penicillin G/V,0
 Amoxicillin,Oxacillin,0
@@ -123,7 +123,7 @@ Amoxicillin, Cotrimoxazole, 0
 Amoxicillin, Chloramphenicol, 0
 Amoxicillin, Daptomycin, 0
 Amoxicillin, Metronidazole, 0
-Amoxicillin, Tigeclycine, 0
+Amoxicillin, Tigecycline, 0
 Amoxicillin, Cloxacillin, 2
 Ampicillin,Penicillin G/V,0
 Ampicillin,Oxacillin,0
@@ -165,7 +165,7 @@ Ampicillin, Cotrimoxazole, 0
 Ampicillin, Chloramphenicol, 0
 Ampicillin, Daptomycin, 0
 Ampicillin, Metronidazole, 0
-Ampicillin, Tigeclycine, 0
+Ampicillin, Tigecycline, 0
 Ampicillin, Cloxacillin, 2
 Piperacillin,Penicillin G/V,0
 Piperacillin,Oxacillin,0
@@ -207,7 +207,7 @@ Piperacillin, Cotrimoxazole, 0
 Piperacillin, Chloramphenicol, 1
 Piperacillin, Daptomycin, 0
 Piperacillin, Metronidazole, 0
-Piperacillin, Tigeclycine, 0
+Piperacillin, Tigecycline, 0
 Piperacillin, Cloxacillin, 2
 Cefadroxil,Penicillin G/V,1
 Cefadroxil,Oxacillin,0
@@ -249,7 +249,7 @@ Cefadroxil, Cotrimoxazole, 0
 Cefadroxil, Chloramphenicol, 0
 Cefadroxil, Daptomycin, 0
 Cefadroxil, Metronidazole, 0
-Cefadroxil, Tigeclycine, 0
+Cefadroxil, Tigecycline, 0
 Cefadroxil, Cloxacillin, 0
 Cephalexin,Penicillin G/V,1
 Cephalexin,Oxacillin,0
@@ -291,7 +291,7 @@ Cephalexin, Cotrimoxazole, 0
 Cephalexin, Chloramphenicol, 0
 Cephalexin, Daptomycin, 0
 Cephalexin, Metronidazole, 0
-Cephalexin, Tigeclycine, 0
+Cephalexin, Tigecycline, 0
 Cephalexin, Cloxacillin, 0
 Cefazolin,Penicillin G/V,0
 Cefazolin,Oxacillin,0
@@ -333,7 +333,7 @@ Cefazolin, Cotrimoxazole, 0
 Cefazolin, Chloramphenicol, 0
 Cefazolin, Daptomycin, 0
 Cefazolin, Metronidazole, 0
-Cefazolin, Tigeclycine, 0
+Cefazolin, Tigecycline, 0
 Cefazolin, Cloxacillin, 0
 Cefaclor,Penicillin G/V,1
 Cefaclor,Oxacillin,0
@@ -375,7 +375,7 @@ Cefaclor, Cotrimoxazole, 0
 Cefaclor, Chloramphenicol, 0
 Cefaclor, Daptomycin, 0
 Cefaclor, Metronidazole, 0
-Cefaclor, Tigeclycine, 0
+Cefaclor, Tigecycline, 0
 Cefaclor, Cloxacillin, 0
 Cefoxitin,Penicillin G/V,0
 Cefoxitin,Oxacillin,0
@@ -442,7 +442,7 @@ Cefprozil, Cotrimoxazole, 0
 Cefprozil, Chloramphenicol, 0
 Cefprozil, Daptomycin, 0
 Cefprozil, Metronidazole, 0
-Cefprozil, Tigeclycine, 0
+Cefprozil, Tigecycline, 0
 Cefprozil, Cloxacillin, 0
 Cefuroxime,Penicillin G/V,0
 Cefuroxime,Oxacillin,0
@@ -484,7 +484,7 @@ Cefuroxime, Cotrimoxazole, 0
 Cefuroxime, Chloramphenicol, 0
 Cefuroxime, Daptomycin, 0
 Cefuroxime, Metronidazole, 0
-Cefuroxime, Tigeclycine, 0
+Cefuroxime, Tigecycline, 0
 Cefuroxime, Cloxacillin, 0
 Cefdinir,Penicillin G/V,0
 Cefdinir,Oxacillin,0
@@ -526,7 +526,7 @@ Cefdinir, Cotrimoxazole, 0
 Cefdinir, Chloramphenicol, 0
 Cefdinir, Daptomycin, 0
 Cefdinir, Metronidazole, 0
-Cefdinir, Tigeclycine, 0
+Cefdinir, Tigecycline, 0
 Cefdinir,Cloxacillin,0
 Cefditoren,Penicillin G/V,0
 Cefditoren,Oxacillin,0
@@ -568,7 +568,7 @@ Cefditoren, Cotrimoxazole, 0
 Cefditoren, Chloramphenicol, 0
 Cefditoren, Daptomycin, 0
 Cefditoren, Metronidazole, 0
-Cefditoren, Tigeclycine, 0
+Cefditoren, Tigecycline, 0
 Cefditoren,Cloxacillin,0
 Cefixime,Cloxacillin,0
 Cefixime,Penicillin G/V,0
@@ -611,7 +611,7 @@ Cefixime, Cotrimoxazole, 0
 Cefixime, Chloramphenicol, 0
 Cefixime, Daptomycin, 0
 Cefixime, Metronidazole, 0
-Cefixime, Tigeclycine, 0
+Cefixime, Tigecycline, 0
 Cefixime,Cloxacillin,0
 Cefotaxime,Penicillin G/V,0
 Cefotaxime,Oxacillin,0
@@ -653,7 +653,7 @@ Cefotaxime, Cotrimoxazole, 0
 Cefotaxime, Chloramphenicol, 0
 Cefotaxime, Daptomycin, 0
 Cefotaxime, Metronidazole, 0
-Cefotaxime, Tigeclycine, 0
+Cefotaxime, Tigecycline, 0
 Cefotaxime,Cloxacillin,0
 Cefpodoxime,Penicillin G/V,0
 Cefpodoxime,Oxacillin,0
@@ -695,7 +695,7 @@ Cefpodoxime, Cotrimoxazole, 0
 Cefpodoxime, Chloramphenicol, 0
 Cefpodoxime, Daptomycin, 0
 Cefpodoxime, Metronidazole, 0
-Cefpodoxime, Tigeclycine, 0
+Cefpodoxime, Tigecycline, 0
 Cefpodoxime,Cloxacillin,0
 Ceftazidime,Penicillin G/V,0
 Ceftazidime,Oxacillin,0
@@ -737,7 +737,7 @@ Ceftazidime, Cotrimoxazole, 0
 Ceftazidime, Chloramphenicol, 0
 Ceftazidime, Daptomycin, 0
 Ceftazidime, Metronidazole, 0
-Ceftazidime, Tigeclycine, 0
+Ceftazidime, Tigecycline, 0
 Ceftazidime,Cloxacillin,0
 Ceftibuten,Penicillin G/V,0
 Ceftibuten,Oxacillin,0
@@ -779,7 +779,7 @@ Ceftibuten, Cotrimoxazole, 0
 Ceftibuten, Chloramphenicol, 0
 Ceftibuten, Daptomycin, 0
 Ceftibuten, Metronidazole, 0
-Ceftibuten, Tigeclycine, 0
+Ceftibuten, Tigecycline, 0
 Ceftibuten,Cloxacillin,0
 Ceftriaxone,Penicillin G/V,0
 Ceftriaxone,Oxacillin,0
@@ -821,7 +821,7 @@ Ceftriaxone, Cotrimoxazole, 0
 Ceftriaxone, Chloramphenicol, 0
 Ceftriaxone, Daptomycin, 0
 Ceftriaxone, Metronidazole, 0
-Ceftriaxone, Tigeclycine, 0
+Ceftriaxone, Tigecycline, 0
 Ceftriaxone,Cloxacillin,0
 Cefepime,Penicillin G/V,0
 Cefepime,Oxacillin,0
@@ -863,7 +863,7 @@ Cefepime, Cotrimoxazole, 0
 Cefepime, Chloramphenicol, 0
 Cefepime, Daptomycin, 0
 Cefepime, Metronidazole, 0
-Cefepime, Tigeclycine, 0
+Cefepime, Tigecycline, 0
 Cefepime,Cloxacillin,0
 Ceftaroline,Penicillin G/V,0
 Ceftaroline,Oxacillin,0
@@ -905,7 +905,7 @@ Ceftaroline, Cotrimoxazole, 0
 Ceftaroline, Chloramphenicol, 0
 Ceftaroline, Daptomycin, 0
 Ceftaroline, Metronidazole, 0
-Ceftaroline, Tigeclycine, 0
+Ceftaroline, Tigecycline, 0
 Ceftaroline,Cloxacillin,0
 Ceftolozane,Penicillin G/V,0
 Ceftolozane,Oxacillin,0
@@ -947,7 +947,7 @@ Ceftolozane, Cotrimoxazole, 0
 Ceftolozane, Chloramphenicol, 0
 Ceftolozane, Daptomycin, 0
 Ceftolozane, Metronidazole, 0
-Ceftolozane, Tigeclycine, 0
+Ceftolozane, Tigecycline, 0
 Ceftolozane,Cloxacillin,0
 Ertapenem,Penicillin G/V,0
 Ertapenem,Oxacillin,0
@@ -989,7 +989,7 @@ Ertapenem, Cotrimoxazole, 0
 Ertapenem, Chloramphenicol, 0
 Ertapenem, Daptomycin, 0
 Ertapenem, Metronidazole, 0
-Ertapenem, Tigeclycine, 0
+Ertapenem, Tigecycline, 0
 Ertapenem,Cloxacillin,0
 Meropenem,Penicillin G/V,0
 Meropenem,Oxacillin,0
@@ -1031,7 +1031,7 @@ Meropenem, Cotrimoxazole, 0
 Meropenem, Chloramphenicol, 0
 Meropenem, Daptomycin, 0
 Meropenem, Metronidazole, 0
-Meropenem, Tigeclycine, 0
+Meropenem, Tigecycline, 0
 Meropenem,Cloxacillin,0
 Aztreonam,Penicillin G/V,0
 Aztreonam,Oxacillin,0
@@ -1073,7 +1073,7 @@ Aztreonam, Cotrimoxazole, 0
 Aztreonam, Chloramphenicol, 0
 Aztreonam, Daptomycin, 0
 Aztreonam, Metronidazole, 0
-Aztreonam, Tigeclycine, 0
+Aztreonam, Tigecycline, 0
 Aztreonam,Cloxacillin,0
 Amikacin, Gentamicin, 2
 Amikacin, Streptomycin, 0
@@ -1089,7 +1089,7 @@ Amikacin, Cotrimoxazole, 0
 Amikacin, Chloramphenicol, 0
 Amikacin, Daptomycin, 0
 Amikacin, Metronidazole, 0
-Amikacin, Tigeclycine, 0
+Amikacin, Tigecycline, 0
 Amikacin,Cloxacillin,0 
 Gentamicin, Streptomycin, 2
 Gentamicin, Tobramycin, 2
@@ -1104,7 +1104,7 @@ Gentamicin, Cotrimoxazole, 0
 Gentamicin, Chloramphenicol, 0
 Gentamicin, Daptomycin, 0
 Gentamicin, Metronidazole, 0
-Gentamicin, Tigeclycine, 0
+Gentamicin, Tigecycline, 0
 Gentamicin,Cloxacillin,0
 Streptomycin, Tobramycin, 2
 Streptomycin, Azithromycin, 0
@@ -1118,7 +1118,7 @@ Streptomycin, Cotrimoxazole, 0
 Streptomycin, Chloramphenicol, 0
 Streptomycin, Daptomycin, 0
 Streptomycin, Metronidazole, 0
-Streptomycin, Tigeclycine, 0
+Streptomycin, Tigecycline, 0
 Streptomycin,Cloxacillin,0
 Tobramycin, Azithromycin, 0
 Tobramycin, Clarithromycin, 0
@@ -1131,7 +1131,7 @@ Tobramycin, Cotrimoxazole, 0
 Tobramycin, Chloramphenicol, 0
 Tobramycin, Daptomycin, 0
 Tobramycin, Metronidazole, 0
-Tobramycin, Tigeclycine, 0
+Tobramycin, Tigecycline, 0
 Tobramycin,Cloxacillin,0
 Azithromycin, Clarithromycin, 0
 Azithromycin, Erythromycin, 0
@@ -1143,7 +1143,7 @@ Azithromycin, Cotrimoxazole, 0
 Azithromycin, Chloramphenicol, 0
 Azithromycin, Daptomycin, 0
 Azithromycin, Metronidazole, 0
-Azithromycin, Tigeclycine, 0
+Azithromycin, Tigecycline, 0
 Azithromycin,Cloxacillin,0
 Clarithromycin, Erythromycin, 2
 Clarithromycin, Clindamycin, 0
@@ -1154,7 +1154,7 @@ Clarithromycin, Cotrimoxazole, 0
 Clarithromycin, Chloramphenicol, 0
 Clarithromycin, Daptomycin, 0
 Clarithromycin, Metronidazole, 0
-Clarithromycin, Tigeclycine, 0
+Clarithromycin, Tigecycline, 0
 Clarithromycin,Cloxacillin,0
 Erythromycin, Clindamycin, 0
 Erythromycin, Ciprofloxacin, 0
@@ -1164,7 +1164,7 @@ Erythromycin, Cotrimoxazole, 0
 Erythromycin, Chloramphenicol, 0
 Erythromycin, Daptomycin, 0
 Erythromycin, Metronidazole, 0
-Erythromycin, Tigeclycine, 0
+Erythromycin, Tigecycline, 0
 Erythromycin,Cloxacillin,0
 Clindamycin, Ciprofloxacin, 0
 Clindamycin, Levofloxacin, 0
@@ -1173,7 +1173,7 @@ Clindamycin, Cotrimoxazole, 0
 Clindamycin, Chloramphenicol, 0
 Clindamycin, Daptomycin, 0
 Clindamycin, Metronidazole, 0
-Clindamycin, Tigeclycine, 0
+Clindamycin, Tigecycline, 0
 Clindamycin,Cloxacillin,0
 Ciprofloxacin, Levofloxacin, 2
 Ciprofloxacin, Moxifloxacin, 2
@@ -1181,33 +1181,33 @@ Ciprofloxacin, Cotrimoxazole, 0
 Ciprofloxacin, Chloramphenicol, 0
 Ciprofloxacin, Daptomycin, 0
 Ciprofloxacin, Metronidazole, 0
-Ciprofloxacin, Tigeclycine, 0
+Ciprofloxacin, Tigecycline, 0
 Ciprofloxacin,Cloxacillin,0
 Levofloxacin, Moxifloxacin, 2
 Levofloxacin, Cotrimoxazole, 0
 Levofloxacin, Chloramphenicol, 0
 Levofloxacin, Daptomycin, 0
 Levofloxacin, Metronidazole, 0
-Levofloxacin, Tigeclycine, 0
+Levofloxacin, Tigecycline, 0
 Levofloxacin,Cloxacillin,0
 Moxifloxacin, Cotrimoxazole, 0
 Moxifloxacin, Chloramphenicol, 0
 Moxifloxacin, Daptomycin, 0
 Moxifloxacin, Metronidazole, 0
-Moxifloxacin, Tigeclycine, 0
+Moxifloxacin, Tigecycline, 0
 Moxifloxacin,Cloxacillin,0
 Cotrimoxazole, Chloramphenicol, 0
 Cotrimoxazole, Daptomycin, 0
 Cotrimoxazole, Metronidazole, 0
-Cotrimoxazole, Tigeclycine, 0
+Cotrimoxazole, Tigecycline, 0
 Cotrimoxazole,Cloxacillin,0
 Chloramphenicol, Daptomycin, 0
 Chloramphenicol, Metronidazole, 0
-Chloramphenicol, Tigeclycine, 0
+Chloramphenicol, Tigecycline, 0
 Chloramphenicol,Cloxacillin,0
 Daptomycin, Metronidazole, 0
-Daptomycin, Tigeclycine, 0
+Daptomycin, Tigecycline, 0
 Daptomycin,Cloxacillin,0
-Metronidazole, Tigeclycine, 0
+Metronidazole, Tigecycline, 0
 Metronidazole,Cloxacillin,0
 Tigecycline, Cloxacillin, 0
