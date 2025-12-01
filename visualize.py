@@ -25,82 +25,82 @@ def load_model(checkpoint_path):
     return model, config
 
 
-def visualize_embeddings(model, drug_graphs, drug_names, drug_categories, save_path='embeddings_tsne.png'):
-    """
-    Visualize drug embeddings using t-SNE.
+# def visualize_embeddings(model, drug_graphs, drug_names, drug_categories, save_path='embeddings_tsne.png'):
+#     """
+#     Visualize drug embeddings using t-SNE.
 
-    Args:
-        model: Trained model
-        drug_graphs: Dict of {drug_name: graph}
-        drug_names: List of drug names
-        drug_categories: Dict of {drug_name: category}
-        save_path: Path to save figure
-    """
-    # Get embeddings
-    embeddings = []
-    valid_drugs = []
-    categories = []
+#     Args:
+#         model: Trained model
+#         drug_graphs: Dict of {drug_name: graph}
+#         drug_names: List of drug names
+#         drug_categories: Dict of {drug_name: category}
+#         save_path: Path to save figure
+#     """
+#     # Get embeddings
+#     embeddings = []
+#     valid_drugs = []
+#     categories = []
 
-    with torch.no_grad():
-        for drug in drug_names:
-            if drug in drug_graphs:
-                graph = drug_graphs[drug]
-                # Add batch attribute
-                graph.batch = torch.zeros(graph.num_nodes, dtype=torch.long)
+#     with torch.no_grad():
+#         for drug in drug_names:
+#             if drug in drug_graphs:
+#                 graph = drug_graphs[drug]
+#                 # Add batch attribute
+#                 graph.batch = torch.zeros(graph.num_nodes, dtype=torch.long)
 
-                # Get embedding
-                emb = model.molecular_encoder(graph)
-                embeddings.append(emb.cpu().numpy())
-                valid_drugs.append(drug)
-                categories.append(drug_categories.get(drug, 'Unknown'))
+#                 # Get embedding
+#                 emb = model.molecular_encoder(graph)
+#                 embeddings.append(emb.cpu().numpy())
+#                 valid_drugs.append(drug)
+#                 categories.append(drug_categories.get(drug, 'Unknown'))
 
-    embeddings = np.vstack(embeddings)
+#     embeddings = np.vstack(embeddings)
 
-    # Apply t-SNE
-    print("Running t-SNE...")
-    tsne = TSNE(n_components=2, random_state=42, perplexity=min(30, len(embeddings) - 1))
-    embeddings_2d = tsne.fit_transform(embeddings)
+#     # Apply t-SNE
+#     print("Running t-SNE...")
+#     tsne = TSNE(n_components=2, random_state=42, perplexity=min(30, len(embeddings) - 1))
+#     embeddings_2d = tsne.fit_transform(embeddings)
 
-    # Plot
-    fig, ax = plt.subplots(figsize=(12, 8))
+#     # Plot
+#     fig, ax = plt.subplots(figsize=(12, 8))
 
-    # Color by category
-    category_names = list(set(categories))
-    colors = plt.cm.tab10(np.linspace(0, 1, len(category_names)))
-    category_to_color = {cat: colors[i] for i, cat in enumerate(category_names)}
+#     # Color by category
+#     category_names = list(set(categories))
+#     colors = plt.cm.tab10(np.linspace(0, 1, len(category_names)))
+#     category_to_color = {cat: colors[i] for i, cat in enumerate(category_names)}
 
-    for i, drug in enumerate(valid_drugs):
-        cat = categories[i]
-        ax.scatter(
-            embeddings_2d[i, 0],
-            embeddings_2d[i, 1],
-            c=[category_to_color[cat]],
-            s=100,
-            alpha=0.7,
-            edgecolors='black',
-            linewidths=1
-        )
-        ax.annotate(
-            drug,
-            (embeddings_2d[i, 0], embeddings_2d[i, 1]),
-            fontsize=8,
-            alpha=0.8
-        )
+#     for i, drug in enumerate(valid_drugs):
+#         cat = categories[i]
+#         ax.scatter(
+#             embeddings_2d[i, 0],
+#             embeddings_2d[i, 1],
+#             c=[category_to_color[cat]],
+#             s=100,
+#             alpha=0.7,
+#             edgecolors='black',
+#             linewidths=1
+#         )
+#         ax.annotate(
+#             drug,
+#             (embeddings_2d[i, 0], embeddings_2d[i, 1]),
+#             fontsize=8,
+#             alpha=0.8
+#         )
 
-    # Legend
-    handles = [plt.Line2D([0], [0], marker='o', color='w', markerfacecolor=category_to_color[cat],
-                          markersize=10, label=cat) for cat in category_names]
-    ax.legend(handles=handles, loc='best', framealpha=0.9)
+#     # Legend
+#     handles = [plt.Line2D([0], [0], marker='o', color='w', markerfacecolor=category_to_color[cat],
+#                           markersize=10, label=cat) for cat in category_names]
+#     ax.legend(handles=handles, loc='best', framealpha=0.9)
 
-    ax.set_xlabel('t-SNE Dimension 1', fontsize=12)
-    ax.set_ylabel('t-SNE Dimension 2', fontsize=12)
-    ax.set_title('Drug Embeddings (t-SNE)', fontsize=14, fontweight='bold')
-    ax.grid(alpha=0.3)
+#     ax.set_xlabel('t-SNE Dimension 1', fontsize=12)
+#     ax.set_ylabel('t-SNE Dimension 2', fontsize=12)
+#     ax.set_title('Drug Embeddings (t-SNE)', fontsize=14, fontweight='bold')
+#     ax.grid(alpha=0.3)
 
-    plt.tight_layout()
-    plt.savefig(save_path, dpi=300, bbox_inches='tight')
-    print(f"✓ Saved embedding visualization to {save_path}")
-    plt.close()
+#     plt.tight_layout()
+#     plt.savefig(save_path, dpi=300, bbox_inches='tight')
+#     print(f"✓ Saved embedding visualization to {save_path}")
+#     plt.close()
 
 
 def predict_all_pairs(model, drug_graphs, drug_names):
@@ -145,56 +145,56 @@ def predict_all_pairs(model, drug_graphs, drug_names):
     return pd.DataFrame(predictions)
 
 
-def create_cross_reactivity_heatmap(predictions_df, drug_names, save_path='heatmap_predictions.png'):
-    """
-    Create heatmap of predicted cross-reactivity.
+# def create_cross_reactivity_heatmap(predictions_df, drug_names, save_path='heatmap_predictions.png'):
+#     """
+#     Create heatmap of predicted cross-reactivity.
 
-    Args:
-        predictions_df: DataFrame from predict_all_pairs()
-        drug_names: List of all drug names
-        save_path: Path to save figure
-    """
-    # Create matrix
-    n = len(drug_names)
-    matrix = np.full((n, n), -1.0)  # -1 for diagonal (not applicable)
+#     Args:
+#         predictions_df: DataFrame from predict_all_pairs()
+#         drug_names: List of all drug names
+#         save_path: Path to save figure
+#     """
+#     # Create matrix
+#     n = len(drug_names)
+#     matrix = np.full((n, n), -1.0)  # -1 for diagonal (not applicable)
 
-    drug_to_idx = {drug: i for i, drug in enumerate(drug_names)}
+#     drug_to_idx = {drug: i for i, drug in enumerate(drug_names)}
 
-    for _, row in predictions_df.iterrows():
-        i = drug_to_idx.get(row['drug1'])
-        j = drug_to_idx.get(row['drug2'])
+#     for _, row in predictions_df.iterrows():
+#         i = drug_to_idx.get(row['drug1'])
+#         j = drug_to_idx.get(row['drug2'])
 
-        if i is not None and j is not None:
-            # Use predicted class: 0=SUGGEST (green), 1=CAUTION (yellow), 2=AVOID (red)
-            matrix[i, j] = row['predicted_class']
-            matrix[j, i] = row['predicted_class']
+#         if i is not None and j is not None:
+#             # Use predicted class: 0=SUGGEST (green), 1=CAUTION (yellow), 2=AVOID (red)
+#             matrix[i, j] = row['predicted_class']
+#             matrix[j, i] = row['predicted_class']
 
-    # Plot
-    fig, ax = plt.subplots(figsize=(14, 12))
+#     # Plot
+#     fig, ax = plt.subplots(figsize=(14, 12))
 
-    # Custom colormap: green (0) -> yellow (1) -> red (2), gray (-1) for diagonal
-    cmap = plt.cm.colors.ListedColormap(['lightgreen', 'yellow', 'red', 'lightgray'])
-    bounds = [-1.5, -0.5, 0.5, 1.5, 2.5]
-    norm = plt.cm.colors.BoundaryNorm(bounds, cmap.N)
+#     # Custom colormap: green (0) -> yellow (1) -> red (2), gray (-1) for diagonal
+#     cmap = plt.cm.colors.ListedColormap(['lightgreen', 'yellow', 'red', 'lightgray'])
+#     bounds = [-1.5, -0.5, 0.5, 1.5, 2.5]
+#     norm = plt.cm.colors.BoundaryNorm(bounds, cmap.N)
 
-    im = ax.imshow(matrix, cmap=cmap, norm=norm, aspect='auto')
+#     im = ax.imshow(matrix, cmap=cmap, norm=norm, aspect='auto')
 
-    # Set ticks
-    ax.set_xticks(np.arange(n))
-    ax.set_yticks(np.arange(n))
-    ax.set_xticklabels(drug_names, rotation=90, ha='right', fontsize=8)
-    ax.set_yticklabels(drug_names, fontsize=8)
+#     # Set ticks
+#     ax.set_xticks(np.arange(n))
+#     ax.set_yticks(np.arange(n))
+#     ax.set_xticklabels(drug_names, rotation=90, ha='right', fontsize=8)
+#     ax.set_yticklabels(drug_names, fontsize=8)
 
-    # Colorbar
-    cbar = plt.colorbar(im, ax=ax, ticks=[-1, 0, 1, 2])
-    cbar.ax.set_yticklabels(['N/A', 'SUGGEST', 'CAUTION', 'AVOID'])
+#     # Colorbar
+#     cbar = plt.colorbar(im, ax=ax, ticks=[-1, 0, 1, 2])
+#     cbar.ax.set_yticklabels(['N/A', 'SUGGEST', 'CAUTION', 'AVOID'])
 
-    ax.set_title('Predicted Cross-Reactivity Heatmap', fontsize=14, fontweight='bold')
+#     ax.set_title('Predicted Cross-Reactivity Heatmap', fontsize=14, fontweight='bold')
 
-    plt.tight_layout()
-    plt.savefig(save_path, dpi=300, bbox_inches='tight')
-    print(f"✓ Saved heatmap to {save_path}")
-    plt.close()
+#     plt.tight_layout()
+#     plt.savefig(save_path, dpi=300, bbox_inches='tight')
+#     print(f"✓ Saved heatmap to {save_path}")
+#     plt.close()
 
 
 def plot_training_history(results_path='results/results.json', save_path='plots/training_history.png'):

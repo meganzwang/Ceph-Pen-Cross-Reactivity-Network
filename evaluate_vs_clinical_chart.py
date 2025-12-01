@@ -21,7 +21,7 @@ from model import build_model
 # Drug order matching Northwestern chart
 DRUGS_IN_ORDER = [
     # Penicillins
-    'Penicillin G/V', 'Oxacillin', 'Amoxicillin', 'Ampicillin', 'Piperacillin',
+    'Penicillin G/V', 'Oxacillin', 'Amoxicillin', 'Ampicillin', 'Piperacillin','Cloxacillin',
     # 1st gen
     'Cefadroxil', 'Cephalexin', 'Cefazolin',
     # 2nd gen
@@ -36,7 +36,19 @@ DRUGS_IN_ORDER = [
     # Carbapenems
     'Ertapenem', 'Meropenem',
     # Monobactams
-    'Aztreonam'
+    'Aztreonam',
+    #Aminoglycosides
+    'Amikacin', 'Gentamicin', 'Streptomycin', 'Tobramycin',
+    #Macrolides
+    'Azithromycin', 'Clarithromycin', 'Erythromycin',
+    #Lincosamides
+    'Clindamycin',
+    #Fluoroquinolones
+    'Ciprofloxacin', 'Levofloxacin', 'Moxifloxacin',
+    #Sulfonamides
+    'Cotrimoxazole',
+    #Other non-beta-lactams
+    'Chloramphenicol', 'Daptomycin', 'Metronidazole', 'Tigecycline'
 ]
 
 
