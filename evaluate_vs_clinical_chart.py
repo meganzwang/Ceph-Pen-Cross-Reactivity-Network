@@ -134,6 +134,16 @@ def load_clinical_labels():
 
     labels_df = pd.read_csv('data/cross_reactivity_labels.csv')
 
+    # Clean up labels: strip whitespace and convert to int
+    labels_df['label'] = labels_df['label'].astype(str).str.strip()
+
+    # Remove rows with empty labels
+    labels_df = labels_df[labels_df['label'] != '']
+    labels_df = labels_df[labels_df['label'] != 'nan']
+
+    # Convert to int
+    labels_df['label'] = labels_df['label'].astype(int)
+
     # Create matrix
     n = len(DRUGS_IN_ORDER)
     clinical_matrix = np.full((n, n), -1, dtype=int)  # -1 for unlabeled
